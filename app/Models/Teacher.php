@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\TeacherFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +14,7 @@ use Override;
 #[Fillable(['user_id', 'nip', 'gender', 'position', 'address', 'joined_at', 'status'])]
 class Teacher extends Model
 {
+    /** @use HasFactory<TeacherFactory> */
     use HasFactory;
 
     #[Override]

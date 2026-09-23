@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\TeacherAttendanceFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,7 @@ use Override;
 #[Fillable(['teacher_id', 'date', 'scan_time', 'status'])]
 class TeacherAttendance extends Model
 {
+    /** @use HasFactory<TeacherAttendanceFactory> */
     use HasFactory;
 
     #[Override]

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\TeacherQRFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,7 @@ use Override;
 #[Fillable(['teacher_id', 'token', 'expired_at'])]
 class TeacherQR extends Model
 {
+    /** @use HasFactory<TeacherQRFactory> */
     use HasFactory;
 
     protected $table = 'teacher_qrs';

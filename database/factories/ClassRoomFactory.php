@@ -32,7 +32,7 @@ class ClassRoomFactory extends Factory
     public function withMajor(?Major $major = null): static
     {
         return $this->state([
-            'major_id' => $major?->id ?? Major::factory(),
+            'major_id' => $major->id ?? Major::factory(),
         ]);
     }
 }

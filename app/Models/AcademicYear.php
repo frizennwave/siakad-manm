@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\AcademicYearFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,7 @@ use Override;
 #[Fillable(['year', 'status'])]
 class AcademicYear extends Model
 {
+    /** @use HasFactory<AcademicYearFactory> */
     use HasFactory;
 
     #[Override]

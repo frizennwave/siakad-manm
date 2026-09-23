@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\ScheduleFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +13,7 @@ use Override;
 #[Fillable(['teaching_assignment_id', 'day_of_week', 'start_time', 'end_time'])]
 class Schedule extends Model
 {
+    /** @use HasFactory<ScheduleFactory> */
     use HasFactory;
 
     #[Override]

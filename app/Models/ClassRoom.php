@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\ClassRoomFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +13,7 @@ use Override;
 #[Fillable(['academic_year_id', 'major_id', 'grade_level', 'name'])]
 class ClassRoom extends Model
 {
+    /** @use HasFactory<ClassRoomFactory>> */
     use HasFactory;
 
     #[Override]

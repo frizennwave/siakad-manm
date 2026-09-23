@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\SchoolCalendarFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,7 @@ use Override;
 #[Fillable(['academic_year_id', 'date', 'type', 'name', 'description'])]
 class SchoolCalendar extends Model
 {
+    /** @use HasFactory<SchoolCalendarFactory> */
     use HasFactory;
 
     #[Override]

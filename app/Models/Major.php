@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\MajorFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,7 @@ use Override;
 #[Fillable(['code', 'name', 'status'])]
 class Major extends Model
 {
+    /** @use HasFactory<MajorFactory> */
     use HasFactory;
 
     #[Override]

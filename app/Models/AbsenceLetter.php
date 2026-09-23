@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\AbsenceLetterFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +13,7 @@ use Override;
 #[Fillable(['student_id', 'verified_by', 'type', 'reason', 'status', 'qr_token', 'verified_at', 'issued_at'])]
 class AbsenceLetter extends Model
 {
+    /** @use HasFactory<AbsenceLetterFactory> */
     use HasFactory;
 
     #[Override]

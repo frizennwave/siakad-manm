@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\GradeFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,7 @@ use Override;
 #[Fillable(['student_id', 'teaching_assignment_id', 'type', 'assessment_name', 'score'])]
 class Grade extends Model
 {
+    /** @use HasFactory<GradeFactory> */
     use HasFactory;
 
     #[Override]

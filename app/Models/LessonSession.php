@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\LessonSessionFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +13,7 @@ use Override;
 #[Fillable(['schedule_id', 'session_date', 'start_time', 'end_time', 'status', 'cancelled_reason'])]
 class LessonSession extends Model
 {
+    /** @use HasFactory<LessonSessionFactory> */
     use HasFactory;
 
     #[Override]
