@@ -25,7 +25,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
-#[Fillable(['name', 'email', 'password', 'role'])]
+#[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -68,7 +68,7 @@ class User extends Authenticatable
     /**
      * @return HasOne<Student, $this>
      */
-    public function stutent(): HasOne
+    public function student(): HasOne
     {
         return $this->hasOne(Student::class);
     }

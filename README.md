@@ -26,7 +26,7 @@ Project ini dibuat untuk membantu pengelolaan data akademik dan presensi sekolah
 ## Teknologi
 
 - Laravel
-- PostgreSQL
+- MySQL
 - REST API
 - Laravel Sanctum
 - Docker / Laravel Sail

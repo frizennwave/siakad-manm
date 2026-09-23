@@ -21,7 +21,7 @@ class AcademicYear extends Model
         parent::casts();
 
         return [
-            'year' => 'boolean',
+            'status' => 'boolean',
         ];
     }
 
