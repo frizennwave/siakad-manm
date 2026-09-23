@@ -13,7 +13,7 @@ use Override;
 #[Fillable(['academic_year_id', 'major_id', 'grade_level', 'name'])]
 class ClassRoom extends Model
 {
-    /** @use HasFactory<ClassRoomFactory>> */
+    /** @use HasFactory<ClassRoomFactory> */
     use HasFactory;
 
     #[Override]
