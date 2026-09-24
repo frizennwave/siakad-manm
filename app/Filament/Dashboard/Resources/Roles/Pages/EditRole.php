@@ -14,6 +14,7 @@ use Override;
 
 class EditRole extends EditRecord
 {
+    /** @var Collection<int, mixed> */
     public Collection $permissions;
 
     protected static string $resource = RoleResource::class;

@@ -13,6 +13,7 @@ use Override;
 
 class CreateRole extends CreateRecord
 {
+    /** @var Collection<int, mixed> */
     public Collection $permissions;
 
     protected static string $resource = RoleResource::class;
@@ -43,6 +44,7 @@ class CreateRole extends CreateRecord
             ]));
         });
 
+        /** @phpstan-ignore method.notFound */
         $this->record->syncPermissions($permissionModels);
     }
 }

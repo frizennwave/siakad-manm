@@ -15,6 +15,7 @@ use BezhanSalleh\PluginEssentials\Concerns\Resource as Essentials;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Clusters\Cluster;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -26,6 +27,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Unique;
 use Override;
@@ -148,9 +150,15 @@ class RoleResource extends Resource
     }
 
     #[Override]
+    /**
+     * @return class-string<Model>
+     */
     public static function getModel(): string
     {
-        return Utils::getRoleModel();
+        /** @var class-string<Model> */
+        $model = Utils::getRoleModel();
+
+        return $model;
     }
 
     public static function getSlug(?Panel $panel = null): string
@@ -158,9 +166,15 @@ class RoleResource extends Resource
         return Utils::getResourceSlug();
     }
 
+    /**
+     * @return class-string<Cluster>|null
+     */
     public static function getCluster(): ?string
     {
-        return Utils::getResourceCluster();
+        /** @var class-string<Cluster>|null */
+        $cluster = Utils::getResourceCluster();
+
+        return $cluster;
     }
 
     public static function getEssentialsPlugin(): ?FilamentShieldPlugin
