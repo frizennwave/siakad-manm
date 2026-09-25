@@ -87,6 +87,9 @@ class TeacherResource extends Resource
                     ->label('NIP')
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('user.email')
+                    ->label('Email')
+                    ->searchable(),
                 TextColumn::make('position')
                     ->label('Jabatan')
                     ->searchable()
@@ -98,10 +101,14 @@ class TeacherResource extends Resource
                         'perempuan' => 'Perempuan',
                         default => '-',
                     }),
+                TextColumn::make('address')
+                    ->label('Alamat')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('joined_at')
                     ->label('Tanggal Masuk')
                     ->date()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('user.email_verified_at')
                     ->label('Verifikasi Email')
                     ->dateTime('d M Y')

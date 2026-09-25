@@ -4,7 +4,6 @@ namespace App\Filament\Dashboard\Resources\Students;
 
 use App\Filament\Dashboard\Resources\Students\Pages\ManageStudents;
 use App\Models\Student;
-use App\Models\Teacher;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
@@ -15,6 +14,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use UnitEnum;
 
@@ -45,7 +45,7 @@ class StudentResource extends Resource
                     ->label('Email')
                     ->email()
                     ->required()
-                    ->rules(function (?Teacher $record): array {
+                    ->rules(function (?Student $record): array {
                         return [
                             Rule::unique('users', 'email')
                                 ->ignore($record?->user_id),
@@ -105,8 +105,35 @@ class StudentResource extends Resource
                 //
             ])
             ->recordActions([
-                EditAction::make(),
-                DeleteAction::make(),
+                EditAction::make()
+                    ->using(function (Student $record, array $data): Student {
+                        return DB::transaction(function () use ($record, $data): Student {
+                            $user = $record->user;
+
+                            $emailChanged = strcasecmp($user->email, $data['email']) !== 0;
+
+                            $user->update([
+                                'name' => $data['name'],
+                                'email' => $data['email'],
+                                'email_verified_at' => $emailChanged ? null : $user->email_verified_at,
+                            ]);
+
+                            $record->update([
+                                'nis' => $data['nis'],
+                            ]);
+
+                            if ($emailChanged) {
+                                DB::afterCommit(function () use ($user): void {
+                                    $user->sendEmailVerificationNotification();
+                                });
+                            }
+
+                            return $record;
+                        });
+                    })
+                    ->successNotificationTitle('Data siswa berhasil diubah!'),
+                DeleteAction::make()
+                    ->successNotificationTitle('Data siswa berhasil dihapus!'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
