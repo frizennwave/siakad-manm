@@ -49,7 +49,7 @@ class StudentEnrollmentResource extends Resource
                     ->label('Kelas')
                     ->relationship('classRoom', 'name')
                     ->getOptionLabelFromRecordUsing(
-                        fn ($record): string => "{$record->name} - ".($record->academic_year?->year ?? '-')
+                        fn ($record): string => "{$record->name} - ".($record->academic_year->year ?? '-')
                     )
                     ->required()
                     ->searchable()
