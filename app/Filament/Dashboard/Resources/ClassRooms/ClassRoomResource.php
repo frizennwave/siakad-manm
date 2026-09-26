@@ -60,7 +60,7 @@ class ClassRoomResource extends Resource
                     ->searchable()
                     ->preload()
                     ->nullable()
-                    ->disabled(fn (Get $get): bool => $get('grade_level') === 10),
+                    ->disabled(fn (Get $get): bool => (int) $get('grade_level') === 10),
                 TextInput::make('name')
                     ->label('Nama Kelas')
                     ->required()

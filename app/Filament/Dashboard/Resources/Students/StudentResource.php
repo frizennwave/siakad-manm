@@ -3,6 +3,8 @@
 namespace App\Filament\Dashboard\Resources\Students;
 
 use App\Filament\Dashboard\Resources\Students\Pages\ManageStudents;
+use App\Filament\Dashboard\Resources\Students\Pages\ViewStudent;
+use App\Filament\Dashboard\Resources\Students\RelationManagers\EnrollmentsRelationManager;
 use App\Models\Student;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
@@ -16,6 +18,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use Override;
 use UnitEnum;
 
 class StudentResource extends Resource
@@ -146,6 +149,15 @@ class StudentResource extends Resource
     {
         return [
             'index' => ManageStudents::route('/'),
+            'view' => ViewStudent::route('/{record}'),
+        ];
+    }
+
+    #[Override]
+    public static function getRelations(): array
+    {
+        return [
+            EnrollmentsRelationManager::class,
         ];
     }
 }
