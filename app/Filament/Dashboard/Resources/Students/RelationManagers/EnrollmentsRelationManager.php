@@ -14,6 +14,7 @@ use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Override;
 
 class EnrollmentsRelationManager extends RelationManager
@@ -34,7 +35,14 @@ class EnrollmentsRelationManager extends RelationManager
             ->components([
                 Select::make('class_room_id')
                     ->label('Kelas')
-                    ->relationship('classRoom', 'name')
+                    ->relationship(
+                        name: 'classRoom',
+                        titleAttribute: 'name',
+                        modifyQueryUsing: fn (Builder $query) => $query->whereHas(
+                            'academic_year',
+                            fn (Builder $query) => $query->where('status', true),
+                        ),
+                    )
                     ->getOptionLabelFromRecordUsing(
                         fn ($record): string => "{$record->name} - ".($record->academic_year->year ?? '-')
                     )

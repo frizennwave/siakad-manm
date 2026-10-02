@@ -3,6 +3,8 @@
 namespace App\Filament\Dashboard\Resources\Teachers;
 
 use App\Filament\Dashboard\Resources\Teachers\Pages\ManageTeachers;
+use App\Filament\Dashboard\Resources\Teachers\Pages\ViewTeacher;
+use App\Filament\Dashboard\Resources\Teachers\RelationManagers\TeachingAssignmentResourceRelationManager;
 use App\Models\Teacher;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
@@ -18,6 +20,7 @@ use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use Override;
 use UnitEnum;
 
 class TeacherResource extends Resource
@@ -170,6 +173,15 @@ class TeacherResource extends Resource
     {
         return [
             'index' => ManageTeachers::route('/'),
+            'view' => ViewTeacher::route('/{record}'),
+        ];
+    }
+
+    #[Override]
+    public static function getRelations(): array
+    {
+        return [
+            TeachingAssignmentResourceRelationManager::class,
         ];
     }
 }

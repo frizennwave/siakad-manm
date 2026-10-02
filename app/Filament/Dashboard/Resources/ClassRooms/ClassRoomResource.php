@@ -14,6 +14,7 @@ use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use UnitEnum;
 
 class ClassRoomResource extends Resource
@@ -36,7 +37,11 @@ class ClassRoomResource extends Resource
             ->components([
                 Select::make('academic_year_id')
                     ->label('Tahun Ajaran')
-                    ->relationship('academic_year', 'year')
+                    ->relationship(
+                        name: 'academic_year',
+                        titleAttribute: 'year',
+                        modifyQueryUsing: fn (Builder $query) => $query->where('status', true),
+                    )
                     ->required()
                     ->searchable()
                     ->preload(),
