@@ -55,7 +55,7 @@ class TeachingAssignmentResourceRelationManager extends RelationManager
                     ->getOptionLabelFromRecordUsing(
                         fn (ClassRoom $record): string => $record->name.
                             ' - '.
-                            ($record->academic_year?->year ?? '-')
+                            ($record->academic_year->year ?? '-')
                     )
                     ->searchable()
                     ->preload()
@@ -119,7 +119,7 @@ class TeachingAssignmentResourceRelationManager extends RelationManager
                     ->getOptionLabelFromRecordUsing(
                         fn (ClassRoom $record): string => $record->name.
                             ' - '.
-                            ($record->academic_year?->year ?? '-')
+                            ($record->academic_year->year ?? '-')
                     )
                     ->searchable()
                     ->preload(),
