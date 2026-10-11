@@ -44,7 +44,7 @@ Project ini dibuat untuk membantu pengelolaan data akademik dan presensi sekolah
 
 Screenshot hasil implementasi sistem dapat dilihat pada bagian berikut.
 Initial Project
-![initial-project](./docs/img/initial-project.png)
+![initial-project](./docs/images/initial-project.png)
 
 ---
 
